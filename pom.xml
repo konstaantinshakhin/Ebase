@@ -10,6 +10,7 @@
     <properties>
         <java.version>1.7</java.version>
         <spring.version>4.0.3.RELEASE</spring.version>
+        <spring.security.version>3.2.6.RELEASE</spring.security.version>
     </properties>
   <dependencies>
     <dependency>
@@ -43,7 +44,18 @@
           </dependency>
           <!--<type>jar</type>-->
           <!--<scope>compile</scope>-->
+      <!-- Spring Security -->
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-web</artifactId>
+          <version>${spring.security.version}</version>
+      </dependency>
 
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-config</artifactId>
+          <version>${spring.security.version}</version>
+      </dependency>
           <dependency>
               <groupId>com.oracle</groupId>
               <artifactId>ojdbc6</artifactId>

@@ -1,0 +1,31 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+    <beans:import resource="dispatcher-servlet.xml" />
+    <http auto-config="true">
+        <intercept-url pattern="/**" access="ROLE_EBASE" />
+        <!--<intercept-url pattern="/goHome**" access="ROLE_USER" />-->
+        <!--<intercept-url pattern="/viewPerson**" access="ROLE_USER" />-->
+        <!--<intercept-url pattern="/friendshipRequest**" access="ROLE_USER" />-->
+
+        <!--<form-login login-page="/login" default-target-url="/"-->
+                    <!--authentication-failure-url="/login?error" username-parameter="username"-->
+                    <!--password-parameter="password" />-->
+        <!--<logout logout-success-url="/login?logout" />-->
+    </http>
+
+
+
+    <beans:bean id="customAuthenticationProvider"
+                class="ru.neoflex.ebase.providers.CustomAuthenticationProvider">
+        <beans:constructor-arg ref="personDAO" />
+    </beans:bean>
+
+    <authentication-manager>
+        <authentication-provider ref='customAuthenticationProvider' />
+    </authentication-manager>
+
+</beans:beans>
