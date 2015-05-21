@@ -5,17 +5,24 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <beans:import resource="dispatcher-servlet.xml" />
-    <http auto-config="true">
+    <http auto-config="true" use-expressions="false">
         <intercept-url pattern="/hello" access="ROLE_ADMIN" />
-        <intercept-url pattern="/**" access="ROLE_EBASE,ROLE_ADMIN" />
+        <!--<intercept-url pattern="/**" access="ROLE_EBASE,ROLE_ADMIN" />-->
         <!--<intercept-url pattern="/goHome**" access="ROLE_USER" />-->
         <!--<intercept-url pattern="/viewPerson**" access="ROLE_USER" />-->
         <!--<intercept-url pattern="/friendshipRequest**" access="ROLE_USER" />-->
 
-        <!--<form-login login-page="/login" default-target-url="/"-->
-                    <!--authentication-failure-url="/login?error" username-parameter="username"-->
-                    <!--password-parameter="password" />-->
-        <!--<logout logout-success-url="/login?logout" />-->
+        <form-login login-page="/login"
+                    default-target-url="/index"
+                    authentication-failure-url="/login?error"
+                    username-parameter="username"
+                    password-parameter="password" />
+        <logout logout-success-url="/login?logout" />
+        <!--<http auto-config="true" use-expressions="false">-->
+            <!--<form-login login-processing-url="/login"-->
+                        <!--login-page="/login"-->
+                        <!--authentication-failure-url="/login?login_error=t"/>-->
+        <!--</http>-->
     </http>
 
 
