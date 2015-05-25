@@ -1,10 +1,8 @@
 package test;
 
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
-import ru.neoflex.ebase.dao.PersonDAO;
-import ru.neoflex.ebase.model.Person;
+import ru.neoflex.ebase.dao.CustomerDAO;
+import ru.neoflex.ebase.model.Customer;
 
 /**
  * Created by kshahin on 5/15/2015.
@@ -16,8 +14,8 @@ public class TestDAO {
 
         ctx.load("db_context.xml");
         ctx.refresh();
-        PersonDAO personDAO = ctx.getBean("personDAO", PersonDAO.class);
-        Person person = personDAO.getByLogin("user");
-        System.out.println(person);
+        CustomerDAO customerDAO = ctx.getBean("personDAO", CustomerDAO.class);
+        Customer customer = customerDAO.getByLogin("user");
+        System.out.println(customer);
     }
 }

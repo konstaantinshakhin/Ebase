@@ -18,7 +18,7 @@
     <!--<end id="bean.jdbcTemplate" />-->
 
     <!--<start id="bean.personDAO" />-->
-    <bean id="personDAO" class="ru.neoflex.ebase.dao.PersonDAO">
+    <bean id="personDAO" class="ru.neoflex.ebase.dao.CustomerDAO">
         <constructor-arg ref="dataSource"/>
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>

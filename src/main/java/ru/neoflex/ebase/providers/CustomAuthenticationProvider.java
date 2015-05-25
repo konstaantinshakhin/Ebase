@@ -16,21 +16,22 @@ package ru.neoflex.ebase.providers;
         import org.springframework.security.core.authority.SimpleGrantedAuthority;
         import org.springframework.stereotype.Component;
 
-        import ru.neoflex.ebase.model.Person;
-        import ru.neoflex.ebase.dao.PersonDAO;
+        import ru.neoflex.ebase.dao.CustomerDAO;
+        import ru.neoflex.ebase.model.Customer;
+        import ru.neoflex.ebase.model.Role;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private PersonDAO personDAO;
+    private CustomerDAO customerDAO;
 
     public CustomAuthenticationProvider() {
         super();
     }
 
-    public CustomAuthenticationProvider(PersonDAO personDAO) {
+    public CustomAuthenticationProvider(CustomerDAO customerDAO) {
         super();
-        this.personDAO = personDAO;
+        this.customerDAO = customerDAO;
     }
 
     @Override
@@ -39,18 +40,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         //String password = String.valueOf(personDAO.getSHA256(authentication.getCredentials().toString()));
         String password = authentication.getCredentials().toString();
-        Person person = personDAO.getByLogin(name);
+        Customer customer = customerDAO.getByLogin(name);
+        List<Role> roles = customer.getRoles();
 
-        if (person == null) {
+        if (customer == null) {
             return null;
         }
 
-        if (name.equals(person.getLogin())
-                && password.equals(person.getPassword())) {
+        if (name.equals(customer.getLogin())
+                && password.equals(customer.getPassword())) {
             List<GrantedAuthority> grantedAuths = new ArrayList<>();
-
-            grantedAuths.add(new SimpleGrantedAuthority(person.getRole()));
-            //grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            for(Role role:roles){
+                grantedAuths.add(new SimpleGrantedAuthority(role.getName()));
+            }
             Authentication auth = new UsernamePasswordAuthenticationToken(name,
                     password, grantedAuths);
             return auth;

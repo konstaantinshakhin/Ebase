@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ru.neoflex.ebase.dao.PersonDAO;
+import ru.neoflex.ebase.dao.CustomerDAO;
 
 @Controller
 public class HelloWorldController {
 
     @Autowired
-    PersonDAO personDAO;
+    CustomerDAO customerDAO;
 
     @RequestMapping("/hello")
     public String hello(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {

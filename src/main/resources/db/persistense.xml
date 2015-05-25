@@ -15,7 +15,7 @@
 
 <!--<start id="bean.spitterDao" />-->
 <bean id="personalDao"
-      class="ru.neoflex.ebase.dao.PersonDAO">
+      class="ru.neoflex.ebase.dao.CustomerDAO">
     <property name="jdbcTemplate" ref="jdbcTemplate" />
 </bean>
 <!--<end id="bean.spitterDao" />-->

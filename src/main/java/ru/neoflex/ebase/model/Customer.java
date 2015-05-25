@@ -1,11 +1,12 @@
 package ru.neoflex.ebase.model;
 
 import java.lang.String;
+import java.util.List;
 
 /**
  * Created by Kostya on 15.02.2015.
  */
-public class Person {
+public class Customer {
     private Long id;
     private String email;
     private String name;
@@ -13,7 +14,7 @@ public class Person {
     private String phone;
     private String login;
     private String password;
-    private String role;
+    private List<Role> roles;
 
 
     public Long getId() {
@@ -49,7 +50,7 @@ public class Person {
     }
 
     public String toString(){
-        return " email: "+email+" password: "+password+" phone: "+phone+" role: "+role;
+        return " email: "+email+" password: "+password+" phone: "+phone+" role: "+roles;
     }
 
     public String getName() {
@@ -76,11 +77,12 @@ public class Person {
         this.login = login;
     }
 
-    public String getRole() {
-        return role;
+
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
