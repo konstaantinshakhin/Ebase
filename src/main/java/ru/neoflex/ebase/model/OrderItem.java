@@ -11,7 +11,7 @@ public class OrderItem {
     private Long id;
     private Item item;
     private Customer customer;
-    private OrderItem orderItem;
+    private String orderUUID;
     private Date orderDate;
 
     public Long getId() {
@@ -47,11 +47,12 @@ public class OrderItem {
         this.customer = customer;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+
+    public String getOrderUUID() {
+        return orderUUID;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderUUID(String orderUUID) {
+        this.orderUUID = orderUUID;
     }
 }
