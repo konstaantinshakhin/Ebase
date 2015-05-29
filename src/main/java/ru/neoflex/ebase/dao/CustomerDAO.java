@@ -24,9 +24,7 @@ public class CustomerDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public CustomerDAO(DataSource dataSource) {
-//        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+
 
     public Customer getByLogin(String login) {
         String sql = "SELECT * FROM customers WHERE login = ?";

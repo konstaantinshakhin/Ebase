@@ -5,9 +5,26 @@ package ru.neoflex.ebase.model;
  */
 public class Item {
     private Long id;
-    private Item parentItem;
+    private Long parentId;
     private String itemName;
     private Long itemCount;
+    private Long lev;
+    private String path;
+
+    public Item(long id,String itemName, String path) {
+        this.id = id;
+        this.itemName = itemName;
+        this.path = path;
+    }
+
+    public Item(long id, long parentId, String itemName, long itemCount, Long lev, String path) {
+        this.id = id;
+        this.parentId = parentId;
+        this.itemName = itemName;
+        this.itemCount= itemCount;
+        this.setLev(lev);
+        this.path = path;
+    }
 
     public Long getId() {
         return id;
@@ -35,11 +52,29 @@ public class Item {
         this.itemCount = itemCount;
     }
 
-    public Item getParentItem() {
-        return parentItem;
+
+
+    public String getPath() {
+        return path;
     }
 
-    public void setParentItem(Item parentItem) {
-        this.parentItem = parentItem;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public Long getLev() {
+        return lev;
+    }
+
+    public void setLev(Long lev) {
+        this.lev = lev;
     }
 }

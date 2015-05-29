@@ -6,23 +6,30 @@ import java.util.List;
  * Created by kshahin on 5/26/2015.
  */
 public class Menu {
-    private Item menuItem;
-    private List<Item> itemList;
+    private Item parentItem;
+    private List<Item> childList;
 
 
-    public Item getItem() {
-        return menuItem;
+    public Menu(){
+
     }
 
-    public void setItem(Item menuItem) {
-        this.menuItem = menuItem;
+
+    public Item getParentItem() {
+        return parentItem;
     }
 
-    public List<Item> getItemList() {
-        return itemList;
+    public void setParentItem(Item parentItem) {
+        this.parentItem = parentItem;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public List<Item> getChildList() {
+        return childList;
     }
+
+    public void setChildList(List<Item> itemList) {
+        this.childList = itemList;
+    }
+
+
 }

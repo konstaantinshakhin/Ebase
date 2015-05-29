@@ -32,3 +32,12 @@ SELECT id, parent_id, name_item,count_item,SYS_CONNECT_BY_PATH(name_item, '/') "
       FROM items
       START WITH parent_id is null
       CONNECT BY PRIOR id = parent_id;
+      update items
+
+update ITEMS s
+   set s.PATH = (
+SELECT SYS_CONNECT_BY_PATH(name_item, '/') "Path"
+      FROM items ss
+      where s.ID = ss.ID
+      START WITH parent_id is null
+      CONNECT BY PRIOR id = parent_id);
