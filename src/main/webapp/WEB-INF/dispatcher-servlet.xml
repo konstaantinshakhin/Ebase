@@ -34,8 +34,8 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@192.168.1.111:1521:orcl" />
-        <property name="username" value="shakhin" />
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="username" value="skv" />
         <property name="password" value="skv" />
     </bean>
 
@@ -48,7 +48,12 @@
     <!--<start id="bean.personDAO" />-->
     <bean id="customerDAO"
           class="ru.neoflex.ebase.dao.CustomerDAO">
-        <constructor-arg ref="dataSource"/>
+
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    <bean id="menuDAO"
+          class="ru.neoflex.ebase.dao.MenuDAO">
+
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
 </beans>

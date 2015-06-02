@@ -1,5 +1,9 @@
 package ru.neoflex.ebase.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +11,20 @@ import java.util.List;
  * Created by kshahin on 5/29/2015.
  */
 public class MenuItem {
-    private Long id;
+
+
+    @Expose(serialize = false)
     private Long parentId;
+
+    @Expose(serialize = true)
+    @SerializedName("label")
     private String nameItem;
 
+    @Expose(serialize = true)
+    private Long id;
+
+    @Expose(serialize = true)
+    @SerializedName("children")
     private List<MenuItem> childs;
 
     public MenuItem(){

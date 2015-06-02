@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript" src="tree.jquery.js"></script>
+<link rel="stylesheet" href="jqtree.css">
+<script src="jquery.cookie.js"></script>
+<script type="text/javascript">
+ $(document).ready(function()
+{
+var data = [
+    {
+        label: 'node1',id:1,
+        children: [
+            { label: 'child1',
+			children: [
+            { label: 'child4' },
+            { label: 'child5' }]
+			},
+			
+            { label: 'child2' }
+        ]
+    },
+    {
+        label: 'node2',
+        children: [
+            { label: 'child3' }
+        ]
+    }
+];
+$('#tree1').bind(
+    'tree.click',
+    function(event) {
+        // The clicked node is 'event.node'
+        var node = event.node;
+        alert(node.name);
+    }
+);
+$(function() {
+    $('#tree1').tree({
+        data: data
+    });
+});
+/*$.getJSON(
+    '/some_url/',
+    function(data) {
+        $('#tree1').tree({
+            data: data
+        });
+    }
+);*/
+});
+</script>
+</head>
+<body>
+
+<div id="tree1" ></div>
+
+</body>
+</html>

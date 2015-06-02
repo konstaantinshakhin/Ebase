@@ -33,7 +33,7 @@
 
     <beans:bean id="customAuthenticationProvider"
                 class="ru.neoflex.ebase.providers.CustomAuthenticationProvider">
-        <beans:constructor-arg ref="personDAO" />
+        <beans:constructor-arg ref="customerDAO" />
     </beans:bean>
 
     <authentication-manager>

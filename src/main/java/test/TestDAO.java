@@ -1,6 +1,7 @@
 package test;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import ru.neoflex.ebase.dao.CustomerDAO;
 import ru.neoflex.ebase.dao.MenuDAO;
@@ -25,26 +26,17 @@ public class TestDAO {
         //Customer customer = customerDAO.getByLogin("user");
         //System.out.println(customer);
         MenuDAO menuDAO = ctx.getBean("menuDAO",MenuDAO.class);
-        Item im = null;
-        List<Item> itemList=menuDAO.getListItem(im);
-        List<Item> il;
-        for(Item item:itemList){
-            il=menuDAO.getListItem(item);
-            il.toString();
-        }
-        Long id = null;
-        Menu menu = menuDAO.getMenuItem(id);
-        Gson gson = new Gson();
-       // System.out.println(gson.toJson(menu));
-        Menu mu ;
-        for(Item item:menu.getChildList()){
-            mu=menuDAO.getMenuItem(item.getId());
-            mu.toString();
-        }
-        menu.toString();
 
-        MenuItem menuItem = menuDAO.getMenuItem();
-        menuItem.toString();
-        System.out.println(gson.toJson(menuItem));
+        //Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+       // System.out.println(gson.toJson(menu));
+
+
+         MenuItem menuItem = menuDAO.getMenuItem();
+        //menuItem.toString();
+        String json = gson.toJson(menuItem);
+        System.out.println(json);
     }
 }
