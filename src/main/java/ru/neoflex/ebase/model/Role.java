@@ -10,7 +10,9 @@ public class Role {
 
 
     public Role(long id, String login,String name) {
-
+        this.id = id;
+        this.login = login;
+        this.name = name;
     }
 
     public Long getId() {

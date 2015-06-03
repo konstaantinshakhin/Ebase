@@ -50,6 +50,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (name.equals(customer.getLogin())
                 && password.equals(customer.getPassword())) {
             List<GrantedAuthority> grantedAuths = new ArrayList<>();
+            if(roles.isEmpty()||roles == null) return null;
             for(Role role:roles){
                 grantedAuths.add(new SimpleGrantedAuthority(role.getName()));
             }

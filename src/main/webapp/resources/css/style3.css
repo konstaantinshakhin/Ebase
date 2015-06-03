@@ -64,6 +64,20 @@ body{
 .features .layout-column:last-child{
     margin-right:0;
 }
+.features .left-column{
+    float:left;
+    margin-right:20px;
+    width:30%;
+    min-height:100px;
+    background:#f9f6f3;
+}
+.features .right-column{
+    float:left;
+    margin-right:20px;
+    width:60%;
+    min-height:100px;
+    background:#f9f6f3;
+}
 .footer{
     
     /*min-height:50px;
