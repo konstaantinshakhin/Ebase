@@ -63,5 +63,13 @@ public class HelloWorldController {
         return json;
     }
 
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    public ModelAndView login() {
 
+        ModelAndView model = new ModelAndView();
+        model.setViewName("tree");
+
+        return model;
+
+    }
 }

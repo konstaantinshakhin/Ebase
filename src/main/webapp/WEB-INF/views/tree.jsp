@@ -13,25 +13,26 @@
         $(document).ready(function()
         {
 
-            $('#tree1').bind(
-                    'tree.click',
-                    function(event) {
-                        // The clicked node is 'event.node'
-                        var node = event.node;
-                        //alert(node.name);
-                    }
-            );
-            $.getJSON(
-             '/getMenu/',
-             function(data) {
-             $('#tree1').tree({
-             data: data
-             });
-             }
-             );
+//            $('#tree1').bind(
+//                    'tree.click',
+//                    function(event) {
+//                        // The clicked node is 'event.node'
+//                        var node = event.node;
+//                        //alert(node.name);
+//                    }
+//            );
+//            $.getJSON(
+//             '/getMenu/',
+//             function(data) {
+//             $('#tree1').tree({
+//             data: data
+//             });
+//             }
+//             );
+            var jdata = [{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]
             $(function() {
                 $('#tree1').tree({
-                    data: data
+                    data: jdata
                 });
             });
         });
