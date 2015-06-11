@@ -14,8 +14,10 @@ import ru.neoflex.ebase.dao.CustomerDAO;
 import ru.neoflex.ebase.dao.MenuDAO;
 import ru.neoflex.ebase.model.MenuItem;
 
+import java.util.List;
+
 @Controller
-public class HelloWorldController {
+public class MainController {
 
     @Autowired
     CustomerDAO customerDAO;
@@ -56,18 +58,18 @@ public class HelloWorldController {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
-        MenuItem menuItem = menuDAO.getMenuItem();
+        List<MenuItem> menuItemList = menuDAO.getMenuItem();
 
-        String json = "["+gson.toJson(menuItem)+"]";
+        String json = gson.toJson(menuItemList);
 
         return json;
     }
 
-    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView login() {
 
         ModelAndView model = new ModelAndView();
-        model.setViewName("tree");
+        model.setViewName("cart");
 
         return model;
 

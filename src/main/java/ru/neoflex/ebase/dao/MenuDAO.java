@@ -35,7 +35,7 @@ public class MenuDAO {
                         return new Item(rs.getLong("id"),
                                         rs.getLong("parent_id"),
                                         rs.getString("name_item"),
-                                        rs.getLong("count_item"),
+                                        rs.getString("count_item"),
                                         rs.getLong("lev"),
                                         rs.getString("path"));
 
@@ -44,26 +44,30 @@ public class MenuDAO {
 
 
     }
-    public MenuItem getMenuItem(){
+    public List<MenuItem> getMenuItem(){
         List<Item> itemList= getAllItem();
+
         Map<Long, MenuItem> menuItemMap = new HashMap<>();
         for(Item item:itemList){
-            MenuItem menuItem = new MenuItem();
-            menuItem.setId(item.getId());
-            menuItem.setParentId(item.getParentId());
-            menuItem.setNameItem(item.getItemName());
-            menuItemMap.put(item.getId(), menuItem);
+            if(item.getItemCount() == null) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setId(item.getId());
+                menuItem.setParentId(item.getParentId());
+                menuItem.setNameItem(item.getItemName());
+                menuItemMap.put(item.getId(), menuItem);
+            }
         }
         for (Map.Entry<Long, MenuItem> entry : menuItemMap.entrySet()) {
             Long id = entry.getKey();
             for (Map.Entry<Long, MenuItem> ent : menuItemMap.entrySet()){
                 Long parentId = ent.getValue().getParentId();
                 if (parentId.equals(id)){
+                    //if(ent.getValue().getId())
                     entry.getValue().getChilds().add(ent.getValue());
                 }
             }
         }
-        return menuItemMap.get(new Long("1"));
+        return menuItemMap.get(new Long("1")).getChilds();
 
     }
 }

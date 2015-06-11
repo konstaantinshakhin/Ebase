@@ -28,56 +28,63 @@
 	<script type="text/javascript">
 
 
-$(document).ready(function()
-{	
-var str = '[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]';
-//var str = '{"label":"sbory","id":1,"children":[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]}';
+$(document).ready(function() {
+    debugger;
+    var str;
+// str = '[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]';
+// str = '{"label":"sbory","id":1,"children":[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]}';
 
-var obj = JSON.parse(str);
+    $.ajax({url: "/Ebase/getMenu", success: function (result) {
+        str = result;
+    }});
+
+    $.getJSON('/Ebase/getMenu', {}, function (obj) {
+        //var obj = JSON.parse(str);
 
 
-var div = document.createElement("div");
-div.className= "list-group panel";
-//var dataParent="MainMenu";
+        var div = document.createElement("div");
+        div.className = "list-group panel";
 
-var divParent = document.getElementById("JMenu");
-//$(jsondata).appendTo("#MainMenu");
-divParent.appendChild(div);
-if(obj instanceof Array){
-	for(j=0;j<obj.length;j++){
-	myParse(obj[j],div,"JMenu");
-	}
-} else myParse(obj,div,"JMenu");
-	
-function myParse(obj, parrent,dataParent) {
-	debugger;
-			var a = document.createElement("a");
+
+        var divParent = document.getElementById("JMenu");
+
+        divParent.appendChild(div);
+        if (obj instanceof Array) {
+            for (j = 0; j < obj.length; j++) {
+                myParse(obj[j], div, "JMenu");
+            }
+        } else myParse(obj, div, "JMenu");
+
+        function myParse(obj, parrent, dataParent) {
+            debugger;
+            var a = document.createElement("a");
             var label = document.createTextNode(obj.label);
-			var id = document.createTextNode(obj.id);
-			
-			a.setAttribute('href',"#"+obj.id);
-			a.setAttribute('class','list-group-item');
-			a.setAttribute('data-toggle',"collapse");
-			a.setAttribute('data-parent',dataParent);
-			
+            var id = document.createTextNode(obj.id);
+
+            a.setAttribute('href', "#" + obj.id);
+            a.setAttribute('class', 'list-group-item');
+            a.setAttribute('data-toggle', "collapse");
+            a.setAttribute('data-parent', dataParent);
+
             a.appendChild(label);
-			parrent.appendChild(a);
-			
-			if(obj.children.length != 0 ) {
-			    
-				var divIn = document.createElement("div");
-				divIn.setAttribute('class','collapse');
-				divIn.setAttribute('id',obj.id);
-				parrent.appendChild(divIn);
-				
-					for (var i = 0; i < obj.children.length; i++) {
-						dataParent = obj.id;
-						myParse(obj.children[i], divIn,dataParent);
-					}				 
-			} 			
-	}
-	
-});
+            parrent.appendChild(a);
+
+            if (obj.children.length != 0) {
+
+                var divIn = document.createElement("div");
+                divIn.setAttribute('class', 'collapse');
+                divIn.setAttribute('id', obj.id);
+                parrent.appendChild(divIn);
+
+                for (var i = 0; i < obj.children.length; i++) {
+                    dataParent = obj.id;
+                    myParse(obj.children[i], divIn, dataParent);
+                }
+            }
+        }
+
+    })
+})
 
 
 
@@ -196,7 +203,7 @@ function myParse(obj, parrent,dataParent) {
                                 <h4 class="pull-right">$64.99</h4>
                                 <h4><a href="#">Second Product</a>
                                 </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p><h1>Hello world!!!</h1></p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">12 reviews</p>
@@ -277,6 +284,91 @@ function myParse(obj, parrent,dataParent) {
                         </div>
                     </div>
 
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$94.99</h4>
+                                <h4><a href="#">Fifth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">18 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$94.99</h4>
+                                <h4><a href="#">Fifth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">18 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$94.99</h4>
+                                <h4><a href="#">Fifth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">18 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$94.99</h4>
+                                <h4><a href="#">Fifth Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">18 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                    <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">

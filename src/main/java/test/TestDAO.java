@@ -34,9 +34,9 @@ public class TestDAO {
        // System.out.println(gson.toJson(menu));
 
 
-         MenuItem menuItem = menuDAO.getMenuItem();
+         //MenuItem menuItem = menuDAO.getMenuItem();
         //menuItem.toString();
-        String json = gson.toJson(menuItem);
-        System.out.println(json);
+        //String json = gson.toJson(menuItem);
+        //System.out.println(json);
     }
 }

@@ -7,7 +7,7 @@ public class Item {
     private Long id;
     private Long parentId;
     private String itemName;
-    private Long itemCount;
+    private String itemCount;
     private Long lev;
     private String path;
 
@@ -17,7 +17,7 @@ public class Item {
         this.path = path;
     }
 
-    public Item(long id, long parentId, String itemName, long itemCount, Long lev, String path) {
+    public Item(long id, long parentId, String itemName, String itemCount, Long lev, String path) {
         this.id = id;
         this.parentId = parentId;
         this.itemName = itemName;
@@ -44,11 +44,11 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public Long getItemCount() {
+    public String getItemCount() {
         return itemCount;
     }
 
-    public void setItemCount(Long itemCount) {
+    public void setItemCount(String itemCount) {
         this.itemCount = itemCount;
     }
 
