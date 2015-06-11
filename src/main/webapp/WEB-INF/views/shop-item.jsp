@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
 <head>
@@ -12,11 +13,17 @@
     <title>Ebase</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="<c:url value="css/bootstrap.min.css" />" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/shop-item.css" rel="stylesheet">
+    <link href="<c:url value="css/shop-item.css"  />" rel="stylesheet">
 
+    <!-- jQuery -->
+    <script type="text/javascript" src="<c:url value="js/jquery.js"/>"> </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="<c:url value="js/bootstrap.min.js"/>"></script>
     
 
 </head>
@@ -113,6 +120,7 @@
                             <span class="glyphicon glyphicon-star-empty"></span>
                             Anonymous
                             <span class="pull-right">10 days ago</span>
+                            <p><h1>Hello World</h1></p>
                             <p>This product was great in terms of quality. I would definitely buy another!</p>
                         </div>
                     </div>
@@ -172,11 +180,7 @@
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

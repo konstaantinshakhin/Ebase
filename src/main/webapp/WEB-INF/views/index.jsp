@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Shop Ebase</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value="css/bootstrap.min.css" />" rel="stylesheet">
@@ -34,9 +34,9 @@ $(document).ready(function() {
 // str = '[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]';
 // str = '{"label":"sbory","id":1,"children":[{"label":"africa","id":2,"children":[{"label":"opt","id":4,"children":[{"label":"sbor1","id":6,"children":[]},{"label":"sbor3","id":7,"children":[]}]},{"label":"roznica","id":5,"children":[{"label":"sbor2","id":8,"children":[]},{"label":"sbor3","id":9,"children":[]}]}]},{"label":"azia","id":3,"children":[{"label":"opt","id":10,"children":[{"label":"sbor5","id":12,"children":[]},{"label":"sbor7","id":13,"children":[]},{"label":"sbor2","id":14,"children":[]}]},{"label":"roznica","id":11,"children":[{"label":"sbor1","id":15,"children":[]}]}]}]}';
 
-    $.ajax({url: "/Ebase/getMenu", success: function (result) {
-        str = result;
-    }});
+    //$.ajax({url: "/Ebase/getMenu", success: function (result) {
+       // str = result;
+    //}});
 
     $.getJSON('/Ebase/getMenu', {}, function (obj) {
         //var obj = JSON.parse(str);

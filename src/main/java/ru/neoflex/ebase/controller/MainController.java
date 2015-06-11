@@ -31,7 +31,7 @@ public class MainController {
 
         model.addAttribute("name","World");
         //returns the view name
-        return "index";
+        return "shop-item";
 
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
