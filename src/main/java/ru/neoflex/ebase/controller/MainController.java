@@ -53,7 +53,7 @@ public class MainController {
 
     }
 
-    @RequestMapping(value="/getMenu", method=RequestMethod.GET)
+    @RequestMapping(value="/getMenu", method=RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String getMenu() {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
