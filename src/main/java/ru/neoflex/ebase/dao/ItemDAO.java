@@ -9,6 +9,7 @@ import ru.neoflex.ebase.model.*;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,32 +17,55 @@ import java.util.Map;
 /**
  * Created by kshahin on 5/26/2015.
  */
-public class MenuDAO {
+public class ItemDAO {
 
     private JdbcTemplate jdbcTemplate;
+
+    private List<Item> listItems;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List<Item> getItemsById(Long id){
+        List<Item> itemList= new ArrayList<>();
+        for(Item item:  getAllItem()){
+            if (item.getParentId().equals(id)){
+                itemList.add(item);
+            }
+        }
+        return itemList;
+    }
+
+    public Item getItemById(Long id){
+        Item itm = null;
+        for(Item item:  getAllItem()){
+            if (item.getId().equals(id)){
+                itm = item;
+            }
+        }
+        return itm;
+    }
 
     public List<Item> getAllItem(){
+        if (listItems == null){
+            listItems = jdbcTemplate.query(
+                    "SELECT id,parent_id,name_item,count_item,lev,path,price FROM items ",
+                    new RowMapper<Item>() {
+                        @Override
+                        public Item mapRow(ResultSet rs, int rowNum) throws SQLException {
+                            return new Item(rs.getLong("id"),
+                                    rs.getLong("parent_id"),
+                                    rs.getString("name_item"),
+                                    rs.getString("count_item"),
+                                    rs.getLong("lev"),
+                                    rs.getString("path"),
+                                    rs.getFloat("price"));
 
-        return  jdbcTemplate.query(
-                "SELECT id,parent_id,name_item,count_item,lev,path FROM items ",
-                new RowMapper<Item>() {
-                    @Override
-                    public Item mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new Item(rs.getLong("id"),
-                                        rs.getLong("parent_id"),
-                                        rs.getString("name_item"),
-                                        rs.getString("count_item"),
-                                        rs.getLong("lev"),
-                                        rs.getString("path"));
-
-                    }
-                });
-
+                        }
+                    });
+        }
+        return  listItems;
 
     }
     public List<MenuItem> getMenuItem(){
@@ -69,5 +93,9 @@ public class MenuDAO {
         }
         return menuItemMap.get(new Long("1")).getChilds();
 
+    }
+
+    public Map<Long, MenuItem> getMenuItemMap(){
+        return null;
     }
 }

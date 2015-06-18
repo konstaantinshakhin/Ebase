@@ -3,12 +3,8 @@ package test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.context.support.GenericXmlApplicationContext;
-import ru.neoflex.ebase.dao.CustomerDAO;
-import ru.neoflex.ebase.dao.MenuDAO;
-import ru.neoflex.ebase.model.Customer;
+import ru.neoflex.ebase.dao.ItemDAO;
 import ru.neoflex.ebase.model.Item;
-import ru.neoflex.ebase.model.Menu;
-import ru.neoflex.ebase.model.MenuItem;
 
 import java.util.List;
 
@@ -25,7 +21,7 @@ public class TestDAO {
         //CustomerDAO customerDAO = ctx.getBean("customerDAO", CustomerDAO.class);
         //Customer customer = customerDAO.getByLogin("user");
         //System.out.println(customer);
-        MenuDAO menuDAO = ctx.getBean("menuDAO",MenuDAO.class);
+        ItemDAO itemDAO = ctx.getBean("itemDAO",ItemDAO.class);
 
         //Gson gson = new Gson();
         Gson gson = new GsonBuilder()
@@ -38,5 +34,8 @@ public class TestDAO {
         //menuItem.toString();
         //String json = gson.toJson(menuItem);
         //System.out.println(json);
+        Item item = itemDAO.getItemById(new Long(2));
+        List<Item> itemList = itemDAO.getItemsById(new Long(2));
+        System.out.println(item);
     }
 }

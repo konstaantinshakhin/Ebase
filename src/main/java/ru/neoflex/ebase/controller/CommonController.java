@@ -10,20 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import ru.neoflex.ebase.dao.CustomerDAO;
-import ru.neoflex.ebase.dao.MenuDAO;
+import ru.neoflex.ebase.dao.ItemDAO;
+import ru.neoflex.ebase.model.Item;
 import ru.neoflex.ebase.model.MenuItem;
 
 import java.util.List;
 
 @Controller
-public class MainController {
+public class CommonController {
+
 
     @Autowired
-    CustomerDAO customerDAO;
-
-    @Autowired
-    MenuDAO menuDAO;
+    ItemDAO itemDAO;
 
 
     @RequestMapping("/hello")
@@ -31,34 +29,42 @@ public class MainController {
 
         model.addAttribute("name","World");
         //returns the view name
-        return "shop-item";
+        return "item";
 
     }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(
-            @RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "logout", required = false) String logout) {
 
+    @RequestMapping(value ="/items", method = RequestMethod.GET)
+    public ModelAndView items(
+            @RequestParam(value = "id", required = false) Long id
+    ) {
         ModelAndView model = new ModelAndView();
-        if (error != null) {
-            model.addObject("error", "Invalid username and password!");
-        }
+        List<Item> items = itemDAO.getItemsById(id);
+        model.addObject("items", items);
+        //returns the view name
+        return model;
 
-        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }
-        model.setViewName("login");
+    }
+
+    @RequestMapping(value ="/item", method = RequestMethod.GET)
+    public ModelAndView item(
+            @RequestParam(value = "id", required = false) Long id
+    ) {
+        ModelAndView model = new ModelAndView();
+        Item item = itemDAO.getItemById(id);
+        model.addObject("item", item);
+        model.setViewName("item");
 
         return model;
 
     }
+
 
     @RequestMapping(value="/getMenu", method=RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String getMenu() {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
-        List<MenuItem> menuItemList = menuDAO.getMenuItem();
+        List<MenuItem> menuItemList = itemDAO.getMenuItem();
 
         String json = gson.toJson(menuItemList);
 
@@ -66,11 +72,23 @@ public class MainController {
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public ModelAndView login() {
+    public ModelAndView cart() {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("cart");
 
+        return model;
+
+    }
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ModelAndView page(
+            @RequestParam(value = "id", required = false) Long id
+    ) {
+
+        ModelAndView model = new ModelAndView();
+        List<Item> items = itemDAO.getItemsById(id);
+        model.setViewName("page");
+        model.addObject("items", items);
         return model;
 
     }

@@ -10,6 +10,7 @@ public class Item {
     private String itemCount;
     private Long lev;
     private String path;
+    private Float price;
 
     public Item(long id,String itemName, String path) {
         this.id = id;
@@ -17,7 +18,7 @@ public class Item {
         this.path = path;
     }
 
-    public Item(long id, long parentId, String itemName, String itemCount, Long lev, String path) {
+    public Item(long id, long parentId, String itemName, String itemCount, Long lev, String path,Float price) {
         this.id = id;
         this.parentId = parentId;
         this.itemName = itemName;
@@ -76,5 +77,13 @@ public class Item {
 
     public void setLev(Long lev) {
         this.lev = lev;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }

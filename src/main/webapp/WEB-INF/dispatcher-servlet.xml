@@ -53,8 +53,8 @@
 
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
-    <bean id="menuDAO"
-          class="ru.neoflex.ebase.dao.MenuDAO">
+    <bean id="itemDAO"
+          class="ru.neoflex.ebase.dao.ItemDAO">
 
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
