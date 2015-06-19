@@ -47,7 +47,7 @@ public class CommonController {
 
     @RequestMapping(value ="/item", method = RequestMethod.GET)
     public ModelAndView item(
-            @RequestParam(value = "id", required = false) Long id
+            @RequestParam(value = "id", required = false, defaultValue="5") Long id
     ) {
         ModelAndView model = new ModelAndView();
         Item item = itemDAO.getItemById(id);
@@ -82,7 +82,7 @@ public class CommonController {
     }
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView page(
-            @RequestParam(value = "id", required = false) Long id
+            @RequestParam(value = "id", required = false, defaultValue="5") Long id
     ) {
 
         ModelAndView model = new ModelAndView();
