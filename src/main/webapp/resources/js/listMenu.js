@@ -29,31 +29,30 @@ function listMenu() {
 
         function myParse(obj, parrent, dataParent) {
             debugger;
+            var href;
             var a = document.createElement("a");
             var label = document.createTextNode(obj.label);
             var id = document.createTextNode(obj.id);
-
-            a.setAttribute('href', "#" + obj.id);
-            a.setAttribute('class', 'list-group-item');
-            a.setAttribute('data-toggle', "collapse");
-            a.setAttribute('data-parent', dataParent);
-
             a.appendChild(label);
-
-
+            a.setAttribute('class', 'list-group-item');
             if (obj.children.length != 0) {
-
+                a.setAttribute('href', "#" + obj.id);
+                a.setAttribute('data-toggle', "collapse");
+                a.setAttribute('data-parent', dataParent);
+                parrent.appendChild(a);
                 var divIn = document.createElement("div");
                 divIn.setAttribute('class', 'collapse');
                 divIn.setAttribute('id', obj.id);
                 parrent.appendChild(divIn);
-
                 for (var i = 0; i < obj.children.length; i++) {
                     dataParent = obj.id;
                     myParse(obj.children[i], divIn, dataParent);
                 }
             }
-            parrent.appendChild(a);
+            else {
+                a.setAttribute('href','/Ebase/page?id='+obj.id);
+                parrent.appendChild(a);
+            }
         }
 
     })
