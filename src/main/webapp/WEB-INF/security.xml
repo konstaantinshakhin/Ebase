@@ -10,7 +10,6 @@
 
     <beans:import resource="dispatcher-servlet.xml" />
     <http auto-config="true" use-expressions="false">
-        <intercept-url pattern="/cart" access="ROLE_ADMIN" />
         <intercept-url pattern="/hello" access="ROLE_ADMIN" />
         <!--<intercept-url pattern="/**" access="ROLE_EBASE,ROLE_ADMIN" />-->
         <!--<intercept-url pattern="/goHome**" access="ROLE_USER" />-->
@@ -18,7 +17,7 @@
         <!--<intercept-url pattern="/friendshipRequest**" access="ROLE_USER" />-->
 
         <form-login login-page="/login"
-                    default-target-url="/index"
+                    default-target-url="/"
                     authentication-failure-url="/login?error"
                     username-parameter="username"
                     password-parameter="password" />

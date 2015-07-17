@@ -123,7 +123,7 @@
             <h4 class="pull-right"><c:out value="${item.price}"/></h4>
             <h4><p> <a target="_blank" href="/Ebase/item?id=<c:out value="${item.id}"/>"><c:out value="${item.itemName}"/></a>.</p>
             </h4>
-            <p> <a target="_blank" href="/Ebase/item?id=<c:out value="${item.id}"/>"><c:out value="${item.itemName}"/></a>.</p>
+            <p> <a target="_blank" href="/Ebase/addItem?id=<c:out value="${item.id}"/>">add to cart</a></p>
         </div>
         <div class="ratings">
             <p class="pull-right">15 reviews</p>

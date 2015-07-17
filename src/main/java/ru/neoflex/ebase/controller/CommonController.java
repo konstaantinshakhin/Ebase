@@ -17,6 +17,7 @@ import ru.neoflex.ebase.model.MenuItem;
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class CommonController {
 
 
@@ -58,6 +59,15 @@ public class CommonController {
 
     }
 
+    @RequestMapping(value ="/index",method=RequestMethod.GET)
+        public Model index(Model model){
+
+        if(!model.containsAttribute("items")) {
+            List<Item> items = itemDAO.getAllChildItems();
+            model.addAttribute("items", items);
+        }
+        return model;
+    }
 
     @RequestMapping(value="/getMenu", method=RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String getMenu() {
@@ -71,15 +81,7 @@ public class CommonController {
         return json;
     }
 
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public ModelAndView cart() {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("cart");
-
-        return model;
-
-    }
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView page(
             @RequestParam(value = "id", required = false, defaultValue="5") Long id

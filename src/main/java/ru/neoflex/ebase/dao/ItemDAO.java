@@ -1,18 +1,12 @@
 package ru.neoflex.ebase.dao;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import ru.neoflex.ebase.model.*;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by kshahin on 5/26/2015.
@@ -29,7 +23,7 @@ public class ItemDAO {
 
     public List<Item> getItemsById(Long id){
         List<Item> itemList= new ArrayList<>();
-        for(Item item:  getAllItem()){
+        for(Item item:  getAllItems()){
             if (item.getParentId().equals(id)){
                 itemList.add(item);
             }
@@ -39,7 +33,7 @@ public class ItemDAO {
 
     public Item getItemById(Long id){
         Item itm = null;
-        for(Item item:  getAllItem()){
+        for(Item item:  getAllItems()){
             if (item.getId().equals(id)){
                 itm = item;
             }
@@ -47,7 +41,7 @@ public class ItemDAO {
         return itm;
     }
 
-    public List<Item> getAllItem(){
+    public List<Item> getAllItems(){
         if (listItems == null){
             listItems = jdbcTemplate.query(
                     "SELECT id,parent_id,name_item,count_item,lev,path,price FROM items ",
@@ -68,8 +62,24 @@ public class ItemDAO {
         return  listItems;
 
     }
+
+    public List<Item> getAllChildItems(){
+        List<Item> itemList= getAllItems();
+        List<Item> itms = new ArrayList<>();
+        Item item = null;
+        Iterator<Item> itr = itemList.iterator();
+        while(itr.hasNext()){
+            item =itr.next();
+            if(null != item.getItemCount()){
+               itms.add(item);
+            }
+
+        }
+        return itms;
+    }
+
     public List<MenuItem> getMenuItem(){
-        List<Item> itemList= getAllItem();
+        List<Item> itemList= getAllItems();
 
         Map<Long, MenuItem> menuItemMap = new HashMap<>();
         for(Item item:itemList){

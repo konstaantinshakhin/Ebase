@@ -18,6 +18,10 @@ public class Item {
         this.path = path;
     }
 
+    public Item(){
+
+    }
+
     public Item(long id, long parentId, String itemName, String itemCount, Long lev, String path,Float price) {
         this.id = id;
         this.parentId = parentId;
@@ -25,6 +29,7 @@ public class Item {
         this.itemCount= itemCount;
         this.setLev(lev);
         this.path = path;
+        this.price = price;
     }
 
     public Long getId() {
