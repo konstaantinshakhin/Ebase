@@ -23,6 +23,27 @@
 
 
     <script type="text/javascript" src="<c:url value="/js/bootstrap.min.js"/>"> </script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            var id,value;
+           // listMenu();
+            $('.form-control').click(function(event){
+
+                if(id != event.target.id){
+                    id = event.target.id;
+                }
+                if( value != event.target.value)
+                {
+                    value = event.target.value;
+                    alert(value);
+                }
+
+            });
+
+        })
+
+    </script>
 
 </head>
 

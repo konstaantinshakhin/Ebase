@@ -35,22 +35,43 @@ public class CartController {
             @RequestParam(value = "id", required = false) Long id,
             Model model) {
         ArrayList<Item> cart = null;
-        if(!model.containsAttribute("cart")) {
-             cart =  new ArrayList<Item>();
-            model.addAttribute("cart",cart);
-        }
-        else cart = (ArrayList<Item>)model.asMap().get("cart");
-             Item item = itemDAO.getItemById(id);
-            Boolean containKey = false;
-            for(Item itm : cart){
-                if(itm.getId().equals(id)){
-                    containKey = true;
-                }
+        if (!model.containsAttribute("cart")) {
+            cart = new ArrayList<Item>();
+            model.addAttribute("cart", cart);
+        } else cart = (ArrayList<Item>) model.asMap().get("cart");
+        Item item = itemDAO.getItemById(id);
+        Boolean containKey = false;
+        for (Item itm : cart) {
+            if (itm.getId().equals(id)) {
+                containKey = true;
             }
-             if(!containKey){
-                 cart.add(item);
-             }
-            return "redirect:/";
+        }
+
+        if (!containKey) {
+            cart.add(item);
+        }
+        return "redirect:/";
     }
 
+    @RequestMapping(value = "/changeCount", method = RequestMethod.GET)
+    public String changeCount(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "value", required = false) String value,
+            Model model) {
+        ArrayList<Item> cart = null;
+
+        if (!model.containsAttribute("cart")) {
+            cart = new ArrayList<Item>();
+            model.addAttribute("cart", cart);
+        } else cart = (ArrayList<Item>) model.asMap().get("cart");
+        //Item item = itemDAO.getItemById(id);
+
+        for (Item itm : cart) {
+            if (itm.getId().equals(id)) {
+            itm.setItemCount(value);
+            }
+
+        }
+        return "/cart";
+    }
 }
